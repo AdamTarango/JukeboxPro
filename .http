@@ -38,13 +38,12 @@ Content-Type: application/json
   "description": "Foobar baz wobble!",
   "trackIds": [1,3,5]
 }
+### Get all tracks
+GET {{host}}/tracks
 
-### Get all restaurants
-GET {{host}}/restaurants
+### Get specific track
+GET {{host}}/tracks/3
 
-### Get specific restaurant
-GET {{host}}/restaurants/3
-
-### Get specific restaurant as a customer
-GET {{host}}/restaurants/3
+### Get specific track as a user
+GET {{host}}/tracks/3
 Authorization: Bearer {{token}}

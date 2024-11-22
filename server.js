@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use(require("./api/auth").router);
 app.use("/playlists", require("./api/playlists"));
-// app.use("/tracks", require("./api/tracks"));
+app.use("/tracks", require("./api/tracks"));
 
 app.use((req, res, next) => {
   next({ status: 404, message: "Endpoint not found." });
