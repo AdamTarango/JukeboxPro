@@ -10,6 +10,21 @@ function createToken (id) {
 
 const prisma = require("../prisma");
 
+router.use(async (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.slice(7); // "Bearer <token>"
+  if (!token) return next();
+  try {
+    const { id } = jwt.verify(token, JWT_SECRET);
+    const user = await prisma.user.findUniqueOrThrow({ where: { id } });
+    req.user = user;
+    next();
+  } catch (e) {
+    next(e);
+  }
+});
+
+
 router.post("/register", async (req, res, next) => {
   const { username, password } = req.body;
   try {
